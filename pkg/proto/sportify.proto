@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package Sportify;
+
+option go_package = "github.com/brashanm/Sportify/pkg/proto";
+
+message SubscriptionRequest {
+  oneof subscription_type {
+    string team   = 1;
+    string player = 2;
+  }
+}
+
+message Update {
+  string type    = 1;      
+  string message = 2;   
+}
+
+service NBAStream {
+  rpc Subscribe (SubscriptionRequest) returns (stream Update);
+}
